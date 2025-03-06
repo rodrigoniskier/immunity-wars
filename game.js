@@ -16,8 +16,8 @@ const config = {
 let player;
 
 function preload() {
-    this.load.image("background", "https://i.imgur.com/O7o2yWk.png"); // Fundo genérico
-    this.load.image("neutrophil", "https://i.imgur.com/FLpQvys.png"); // Neutrófilo simples
+    this.load.image("background", "background.png");
+    this.load.image("neutrophil", "neutrophil.png");
 }
 
 function create() {
@@ -29,21 +29,23 @@ function create() {
 }
 
 function update() {
+    let velocityX = 0;
+    let velocityY = 0;
+
     if (this.cursors.left.isDown) {
-        player.setVelocityX(-160);
+        velocityX = -160;
     } else if (this.cursors.right.isDown) {
-        player.setVelocityX(160);
-    } else {
-        player.setVelocityX(0);
+        velocityX = 160;
     }
 
     if (this.cursors.up.isDown) {
-        player.setVelocityY(-160);
+        velocityY = -160;
     } else if (this.cursors.down.isDown) {
-        player.setVelocityY(160);
-    } else {
-        player.setVelocityY(0);
+        velocityY = 160;
     }
+
+    player.setVelocity(velocityX, velocityY);
 }
+
 
 const game = new Phaser.Game(config);
